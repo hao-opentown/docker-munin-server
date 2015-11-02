@@ -20,7 +20,7 @@ if  [ $rc -ne 0 -a -n "${ALERT_RECIPIENT}" -a -n "${ALERT_SENDER}" ] ; then
   echo 'contact.mail.command mail -r '${ALERT_SENDER}' -s "[${var:group};${var:host}] -> ${var:graph_title} -> warnings: ${loop<,>:wfields  ${var:label}=${var:value}} / criticals: ${loop<,>:cfields  ${var:label}=${var:value}}"' ${ALERT_RECIPIENT} >> /etc/munin/munin.conf
 fi
 
-[ -e /etc/munin/htpasswd.users ] || htpasswd -b -c /etc/munin/htpasswd.users "$MUNIN_USER" "$MUNIN_PASSWORD"
+#[ -e /etc/munin/htpasswd.users ] || htpasswd -b -c /etc/munin/htpasswd.users "$MUNIN_USER" "$MUNIN_PASSWORD"
 
 # generate node list
 for NODE in $NODES
@@ -63,7 +63,7 @@ fi
 echo "Using the following munin nodes:"
 echo $NODES
 # start apache
-/usr/sbin/nginx
+# /usr/sbin/nginx
 # show logs
 echo "Tailing /var/log/syslog..."
 tail -F /var/log/syslog /var/log/munin/munin-update.log & pid=$!
